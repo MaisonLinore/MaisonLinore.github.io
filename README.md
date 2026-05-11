@@ -1,1 +1,1 @@
-# MaisonLinore.github.io/salt
+# MaisonLinore.github.io
