@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SÀLT+ V1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon: #00f3ff; --bg: #02060a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: #fff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; height: 100vh; width: 100vw; }
+        
+        .bg-container { position: fixed; width: 100%; height: 100%; z-index: -1; }
+        .grid-bg { width: 100%; height: 100%; background-image: linear-gradient(rgba(0,243,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,243,255,0.05) 1px, transparent 1px); background-size: 40px 40px; }
+
+        .screen { display: none; height: 100vh; width: 100%; flex-direction: column; align-items: center; padding: 10px; position: absolute; top: 0; left: 0; }
+        .active { display: flex !important; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* LANDING PAGE - COMPACT */
+        .v1-text { font-family: 'Orbitron'; font-size: 9px; color: var(--neon); letter-spacing: 2px; margin-top: 20px; }
+        .brand-title { font-family: 'Orbitron'; font-size: 36px; font-weight: 900; letter-spacing: 6px; text-shadow: 0 0 15px var(--neon); margin: 5px 0; }
+        .slogan { font-size: 10px; letter-spacing: 3px; color: var(--neon); opacity: 0.6; margin-bottom: 15px; }
+
+        .phone-stage { width: 260px; height: 430px; border: 1.5px solid rgba(0,243,255,0.3); border-radius: 35px; position: relative; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; padding-top: 25px; }
+        .phone-notch { width: 70px; height: 16px; background: #000; border-radius: 0 0 12px 12px; position: absolute; top: 0; }
+        
+        .price-tag { font-family: 'Orbitron'; font-size: 38px; font-weight: 900; margin-top: 10px; }
+        .price-month { color: var(--neon); font-size: 12px; margin-bottom: 20px; }
+        
+        .satellite-box { width: 90px; height: 90px; border: 1px dashed rgba(0,243,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
+        .satellite-box img { width: 45px; filter: drop-shadow(0 0 10px var(--neon)); animation: pulse 3s infinite ease-in-out; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+
+        .pin-container { width: 85%; text-align: center; }
+        .pin-input { background: transparent; border: 1px solid var(--neon); border-radius: 8px; color: #fff; text-align: center; font-size: 16px; width: 100%; outline: none; font-family: 'Orbitron'; letter-spacing: 3px; padding: 10px; text-transform: lowercase; }
+
+        /* ECOSYSTEM GRID - STREAMLINED */
+        .app-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; max-width: 420px; margin-top: 15px; }
+        .app { text-decoration: none; color: #fff; font-size: 7px; text-align: center; display: flex; flex-direction: column; align-items: center; font-weight: 600; text-transform: uppercase; }
+        .app img { width: 38px; height: 38px; border-radius: 9px; margin-bottom: 4px; border: 1px solid rgba(0,243,255,0.15); background: #000; }
+        
+        .shelf { background: rgba(255,255,255,0.03); border-radius: 20px; padding: 12px; margin: 15px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 90%; max-width: 320px; border: 1px solid rgba(0,243,255,0.1); }
+        .deactivate-btn { width: 85%; max-width: 280px; padding: 12px; border: 1px solid var(--neon); background: transparent; color: var(--neon); border-radius: 30px; font-family: 'Orbitron'; font-size: 10px; cursor: pointer; letter-spacing: 2px; margin-top: 5px; box-shadow: 0 0 10px rgba(0,243,255,0.1); }
+    </style>
+</head>
+<body>
+    <div class="bg-container"><div class="grid-bg"></div></div>
+
+    <div class="screen active" id="landing">
+        <div class="v1-text">VIRTUAL SMARTPHONE V1</div>
+        <h1 class="brand-title">SÀLT+</h1>
+        <div class="slogan">FAST+ — CHEAP — ENERGY-</div>
+
+        <div class="phone-stage">
+            <div class="phone-notch"></div>
+            <div style="font-family:'Orbitron'; color:var(--neon); font-size:11px;">SÀLT+</div>
+            <div class="price-tag">$3</div>
+            <div class="price-month">/Month</div>
+            
+            <div class="satellite-box">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/13264205572816351592" alt="Salt+">
+            </div>
+
+            <div class="pin-container">
+                <p style="font-size:7px; color:var(--neon); margin-bottom:8px; letter-spacing:1px; opacity:0.7;">ENTER ACTIVATION PIN</p>
+                <input type="text" id="pinEntry" class="pin-input" placeholder="••••••" autocomplete="off" oninput="checkPin(this)">
+                <p style="font-size:6px; opacity:0.4; margin-top:8px;">WEB BASED APPLICATION: </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="screen" id="ecosystem" style="overflow-y: auto;">
+        <div style="font-family:'Orbitron'; color:var(--neon); font-size:16px; margin: 15px 0 5px 0; letter-spacing:4px;">SÀLT+ ECOSYSTEM</div>
+        
+        <div class="app-grid">
+            <a href="https://linkedin.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=linkedin.com">LINKEDIN</a>
+            <a href="https://facebook.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=facebook.com">FB</a>
+            <a href="https://youtube.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=youtube.com">YOUTUBE</a>
+            <a href="https://instagram.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=instagram.com">IG</a>
+            <a href="https://wa.me" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=whatsapp.com">WA</a>
+
+            <a href="https://gemini.google.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=gemini.google.com">GEMINI</a>
+            <a href="https://x.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=x.com">X</a>
+            <a href="https://deepseek.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=deepseek.com">DEEPSEEK</a>
+            <a href="https://telegram.org" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=telegram.org">TELEGRAM</a>
+            <a href="https://chatgpt.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=openai.com">CHATGPT</a>
+
+            <a href="https://cnn.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=cnn.com">CNN</a>
+            <a href="https://time.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=time.com">TIME</a>
+            <a href="https://theguardian.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=theguardian.com">GUARDIAN</a>
+            <a href="https://wsj.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=wsj.com">WSJ</a>
+            <a href="https://espn.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=espn.com">ESPN</a>
+
+            <a href="https://economist.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=economist.com">ECONOMIST</a>
+            <a href="https://news.google.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=news.google.com">G-NEWS</a>
+            <a href="https://tiktok.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=tiktok.com">TIKTOK</a>
+            <a href="https://f1.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=f1.com">F1</a>
+            <a href="https://tv.apple.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=apple.com">APPLE TV</a>
+
+            <a href="https://hbo.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=hbo.com">HBO</a>
+            <a href="https://netflix.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=netflix.com">NETFLIX</a>
+            <a href="https://viu.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=viu.com">VIU</a>
+            <a href="https://primevideo.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=primevideo.com">PRIME</a>
+            <a href="https://bing.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=bing.com">BING</a>
+        </div>
+
+        <div class="shelf">
+            <a href="https://gmail.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=gmail.com">GMAIL</a>
+            <a href="https://photos.google.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=photos.google.com">PHOTOS</a>
+            <a href="https://google.com" class="app"><img src="https://www.google.com/s2/favicons?sz=128&domain=google.com">SEARCH</a>
+        </div>
+
+        <button class="deactivate-btn" onclick="location.reload()">DEACTIVATE SYSTEM</button>
+    </div>
+
+    <script>
+        function checkPin(input) {
+            const val = input.value.toLowerCase();
+            if (val === '12a3cb' || val === 'free7d') {
+                document.getElementById('landing').classList.remove('active');
+                document.getElementById('ecosystem').classList.add('active');
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
